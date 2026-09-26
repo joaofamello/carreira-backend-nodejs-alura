@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { LivrosController } from '#controllers/livros.controller.js';
+import db from '#db/singleton-connection.js';
+const router = Router();
+
+const livrosController = new LivrosController(db);
+
+router.get('/livros', livrosController.listarLivros);
+router.get('/livros/:id', livrosController.buscarLivroPorId);
+router.post('/livros', livrosController.cadastrarLivro);
+
+export default router;
